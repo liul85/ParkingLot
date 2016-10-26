@@ -25,4 +25,13 @@ public class ParkingLot {
         }
         return null;
     }
+
+    public boolean isAvailable() {
+        return parkedCars.size() < capacity;
+    }
+
+
+    public boolean isCarParked(Car car) {
+        return parkedCars.contains(car);
+    }
 }

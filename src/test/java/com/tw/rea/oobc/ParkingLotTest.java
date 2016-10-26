@@ -18,13 +18,15 @@ public class ParkingLotTest {
 
     @Test
     public void shouldParkCarWhenLotIsNotFull() throws Exception {
-        assertThat(parkingLot.park(car), is(true));
+        parkingLot.park(car);
+        assertThat(parkingLot.isCarParked(car), is(true));
     }
 
     @Test
     public void shouldFetchCorrectCarWhenItsParked() throws Exception {
         parkingLot.park(car);
-        assertThat(parkingLot.fetch(car), is(car));
+        Car fetchedCar = parkingLot.fetch(car);
+        assertThat(fetchedCar, is(car));
     }
 
     @Test
@@ -36,7 +38,7 @@ public class ParkingLotTest {
     public void shouldParkFailedWhenLotIsFull() throws Exception {
         parkingLot.park(car);
         Car newcar = new Car();
-
-        assertThat(parkingLot.park(newcar), is(false));
+        parkingLot.park(newcar);
+        assertThat(parkingLot.isCarParked(newcar), is(false));
     }
 }
