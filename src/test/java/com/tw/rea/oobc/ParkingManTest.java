@@ -16,8 +16,10 @@ public class ParkingManTest {
     private Car car;
     private ParkingMan parkingMan;
     private Car car2;
+    private ParkingStrategy parkingStrategy;
 
     @Before
+
     public void setUp() throws Exception {
         parkingLot = new ParkingLot(1);
         parkingLot2 = new ParkingLot(1);
@@ -27,7 +29,8 @@ public class ParkingManTest {
 
         car = new Car();
         car2 = new Car();
-        parkingMan = new ParkingMan(lots);
+        parkingStrategy = new NormalParkingStrategy();
+        parkingMan = new ParkingMan(lots, parkingStrategy);
     }
 
     @Test

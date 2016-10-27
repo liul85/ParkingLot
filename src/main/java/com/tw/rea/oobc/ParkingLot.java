@@ -34,4 +34,8 @@ public class ParkingLot {
     public boolean isCarParked(Car car) {
         return parkedCars.contains(car);
     }
+
+    public int getAvailableSpace() {
+        return parkedCars.size() <= capacity ? capacity - parkedCars.size() : 0;
+    }
 }

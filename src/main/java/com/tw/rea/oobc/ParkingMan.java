@@ -6,22 +6,20 @@ import java.util.Optional;
 
 public class ParkingMan {
     private List<ParkingLot> parkingLots = new ArrayList<>();
+    private ParkingStrategy parkingStrategy;
 
-    public ParkingMan(List<ParkingLot> parkingLots) {
+    public ParkingMan(List<ParkingLot> parkingLots, ParkingStrategy parkingStrategy) {
         this.parkingLots = parkingLots;
+        this.parkingStrategy = parkingStrategy;
     }
 
     public boolean park(Car car) {
-        Optional<ParkingLot> availableLot = findAvailableLot(parkingLots);
+        Optional<ParkingLot> availableLot = parkingStrategy.findParkingLot(parkingLots);
         if (availableLot.isPresent()) {
             availableLot.get().park(car);
             return true;
         }
         return false;
-    }
-
-    private Optional<ParkingLot> findAvailableLot(List<ParkingLot> parkingLots) {
-        return parkingLots.stream().filter(parkingLot -> parkingLot.isAvailable()).findFirst();
     }
 
     public Car fetch(Car car) {
