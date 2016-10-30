@@ -35,4 +35,18 @@ public class ParkingManagerTest {
         parkingManager.park(car);
         assertThat(parkingLot.isCarParked(car), is(true));
     }
+
+    @Test
+    public void managerCanAssighParkingManToPark() throws Exception {
+        ParkingLot parkingLot3 = new ParkingLot(1);
+        List<ParkingLot> parkingLots2 = new ArrayList<>();
+        parkingLots2.add(parkingLot3);
+        ParkingMan parkingMan = new ParkingMan(parkingLots2, new NormalParkingStrategy());
+        parkingManager.addParkingMan(parkingMan);
+        parkingLot2.park(new Car());
+        Car car = new Car();
+
+        parkingManager.assignToPark(car);
+        assertThat(parkingLot3.isCarParked(car), is(true));
+    }
 }

@@ -22,6 +22,15 @@ public class ParkingMan {
         return false;
     }
 
+    public boolean canPark() {
+        Optional<ParkingLot> parkingLotOpt = parkingLots.stream().filter(parkingLot -> parkingLot.isAvailable()).findFirst();
+        if (parkingLotOpt.isPresent()) {
+            return true;
+        }
+
+        return false;
+    }
+
     public Car fetch(Car car) {
         Optional<ParkingLot> lot = parkingLots.stream().filter(parkingLot -> parkingLot.isCarParked(car)).findFirst();
         if (lot.isPresent()) {
